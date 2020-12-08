@@ -21,6 +21,20 @@ app.get('/candy', async(req, res) => {
     .then(candy => res.send(candy));
 });
 
+// I need help with the PUT and  DELETE routes
+
+// app.put('/candy', async(req, res) => {
+//     Candy
+//       .find()
+//       .then(candy => res.send(candy));
+//   });
+
+
+// app.delete('/candy', async(req, res) => {
+//   const candy = await Candy.delete(req.body);
+//   res.send(candy);
+// });
+
 
 
 Candy
