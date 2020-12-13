@@ -2,7 +2,7 @@ const request = require('supertest');
 const app = require('../lib/app');
 const pool = require('../lib/utils/pool');
 const fs = require('fs');
-const Candy = require('../lib/models/candy');
+const Candy = require('./lib/models/candy');
 
 describe('tests candy class', () => {
   beforeEach(() => {
@@ -78,30 +78,42 @@ describe('tests candy class', () => {
       .get('/candy/');
     
     expect(res.body).toEqual(expect.arrayContaining(candy));
-    // expect(res.body).toHaveLength(candy.length);
+    expect(res.body).toHaveLength(candy.length);
   });
 
-  // it('PUTs an update to candy by id', async() => {
-  //   const response = await request(app)
-  //     .put('/candy/1')
-  //     .send({
-  //       type: 'chocolate', 
-  //       description: 'milk chocolate or dark chocolate', 
-  //       url: 'https://url.com' 
-  //     });
+  it('PUTs an update to candy by id', async() => {
+    const candy = await Candy.insert({
+      type: 'chocolate', 
+      description: 'milk chocolate, dark chocolate or white chocolate', 
+      url: 'https://url.com',
+    });
+    
+    const response = await request(app)
+      .put(`/candy/${candy.id}`)
+      .send({
+        type: 'chocolate', 
+        description: 'milk chocolate or dark chocolate', 
+        url: 'https://url.com',
+      });
 
-  //   expect(response.body).toEqual({
-  //     type: 'chocolate', 
-  //     description: 'milk chocolate or dark chocolate', 
-  //     url: 'https://url.com'
-  //   });
-  // });
+    expect(response.body).toEqual({
+      id: candy.id,
+      type: 'chocolate', 
+      description: 'milk chocolate or dark chocolate', 
+      url: 'https://url.com',
+    });
+  });
 
-  // it('DELETES candy by id', async() => { 
-  //   const response = await request(app)
-  //     .delete('candy/1');
+  it('DELETES candy by id', async() => { 
+    const candy = await Candy.insert({
+      type: 'chocolate', 
+      description: 'milk chocolate, dark chocolate or white chocolate', 
+      url: 'https://url.com',
+    });
+    const response = await request(app)
+      .delete(`/candy/${candy.id}`);
 
-  //   expect(response.body).toEqual('candy/1');
-  // });
+    expect(response.body).toEqual(candy);
+  });
 
 });
