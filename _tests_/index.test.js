@@ -2,7 +2,7 @@ const request = require('supertest');
 const app = require('../lib/app');
 const pool = require('../lib/utils/pool');
 const fs = require('fs');
-const Candy = require('./lib/models/candy');
+const Candy = require('./lib/models/Candy');
 
 describe('tests candy class', () => {
   beforeEach(() => {
