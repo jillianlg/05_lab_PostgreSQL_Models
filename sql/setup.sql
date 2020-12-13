@@ -1,0 +1,41 @@
+
+DROP TABLE IF EXISTS candy;
+DROP TABLE IF EXISTS chocolate;
+DROP TABLE IF EXISTS gummy;
+DROP TABLE IF EXISTS hard_candy;
+DROP TABLE IF EXISTS jelly_beans;
+
+CREATE TABLE candy (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    type TEXT NOT NULL,
+    description TEXT,
+    url TEXT NOT NULL
+);
+
+CREATE TABLE chocolate (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    type TEXT NOT NULL,
+    description TEXT,
+    name TEXT NOT NULL
+);
+
+CREATE TABLE gummy (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    type TEXT NOT NULL,
+    description TEXT,
+    name TEXT NOT NULL
+);
+
+CREATE TABLE hard_candy (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    type TEXT NOT NULL,
+    description TEXT,
+    name TEXT NOT NULL
+);
+
+CREATE TABLE jelly_beans (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    type TEXT NOT NULL,
+    description TEXT,
+    name TEXT NOT NULL
+);
